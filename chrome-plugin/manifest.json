@@ -1,0 +1,13 @@
+{
+    "name": "常用记录",
+    "description": "创建一个插件",
+    "version": "1.0",
+    "manifest_version": 3,
+    "background": {
+        "service_worker": "background.js"
+    },
+    "permissions": ["storage", "activeTab", "scripting"],
+    "action": {
+        "default_popup": "popup.html"
+    }
+}

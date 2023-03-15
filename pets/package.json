@@ -1,0 +1,19 @@
+{
+  "name": "pets",
+  "version": "1.0.0",
+  "description": "",
+  "main": " main.js",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron .",
+    "package-win": "electron-packager . pets --platform=win32 --arch=x64 --out=./out --app-version=0.0.1 --overwrite --ignore=node_modules",
+    "package-mac": "electron-packager . pets --platform=mas --out=./out --app-version=0.0.1 --overwrite --ignore=node_modules"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^13.1.9",
+    "electron-packager": "^15.3.0"
+  }
+}

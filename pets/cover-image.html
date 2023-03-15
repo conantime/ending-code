@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>art-image</title>
+    </head>
+    <body>
+        <image src="avatar.png"></image>
+        <canvas id="art-canvas"></canvas>
+        <script>
+            let myCanvas = document.getElementById("art-canvas");
+            let ctx = myCanvas.getContext("2d");
+            const natuImage = new Image();
+            natuImage.src = "avatar.png";
+            natuImage.onload = (ev) => {
+                let { height, width } = ev.path[0];
+                natuImage.width = width;
+                natuImage.height = height;
+                myCanvas.width = width;
+                myCanvas.height = height;
+                ctx.drawImage(natuImage, 0, 0);
+                let imageData = ctx.getImageData(0, 0, width, height).data;
+                console.log(imageData)
+                console.log(imageData);
+                ctx.fillStyle = "#fff";
+                ctx.fillRect(0, 0, width, height);
+                let currentR, currentG, currentB;
+                for (let h = 0; h < height; h += 1) {
+                    for (let w = 0; w < width; w += 1) {
+                        let position = (width * h + w) * 4;
+                        let r = imageData[position],
+                            g = imageData[position + 1],
+                            b = imageData[position + 2],
+                            a = imageData[position + 3];
+                        if (
+                            Math.abs(
+                                r + g + b - (currentR + currentG + currentB)
+                            ) > 65 ||
+                            r + g + b < 95
+                        ) {
+                            ctx.fillStyle = `rgba(0, 0, 0, 1)`;
+                            ctx.fillRect(w, h, 1, 1);
+                        }
+                        currentR = r;
+                        currentG = g;
+                        currentB = b;
+                    }
+                }
+                for (let w = 0; w < width; w += 1) {
+                    for (let h = 0; h < height; h += 1) {
+                        let position = (width * h + w) * 4;
+                        let r = imageData[position],
+                            g = imageData[position + 1],
+                            b = imageData[position + 2],
+                            a = imageData[position + 3];
+                        if (
+                            Math.abs(
+                                r + g + b - (currentR + currentG + currentB)
+                            ) > 65 ||
+                            r + g + b < 95
+                        ) {
+                            ctx.fillStyle = `rgba(0, 0, 0, 1)`;
+                            ctx.fillRect(w, h, 1, 1);
+                        }
+                        currentR = r;
+                        currentG = g;
+                        currentB = b;
+                    }
+                }
+            };
+        </script>
+    </body>
+</html>
